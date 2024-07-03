@@ -1,0 +1,26 @@
+{
+    "include": ["src"], // which files to compile
+    "exclude": ["node_modules"], // which files to skip
+    "compilerOptions": {
+        "target": "es2016",
+        "module": "commonjs",
+        "rootDir": "./src",
+        "outDir": "./dist",
+        // "target": "ESNext",
+        // "module": "ESNext",
+
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react",
+        "allowJs": true,
+
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+
+        /* Type Checking */
+        "strict": true,
+        "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    }
+}
