@@ -31,20 +31,29 @@ const getAllProducts = async (req: Request, res: Response) => {
 
     try {
         const result = await ProductServices.getAllProductsFromDB(searchTerm);
-        res.status(200).json({
-            success: true,
-            message: searchTerm
-                ? `Products matching search term '${searchTerm}' fetched successfully!`
-                : 'Products retrived successfully',
-            data: result,
-        });
+
+        if (result.length > 0) {
+            res.status(200).json({
+                success: true,
+                message: searchTerm
+                    ? `Products matching search term '${searchTerm}' fetched successfully!`
+                    : 'Products retrived successfully',
+                data: result,
+            });
+        } else {
+            res.status(200).json({
+                success: true,
+                message: 'No products found',
+                data: result,
+            });
+        }
     } catch (error: any) {
         console.log(error);
         res.status(500).json({
             success: false,
             message:
                 error.message ||
-                'Something went wrong - can not retrived producst',
+                'Something went wrong - can not retrived product',
             error: error,
         });
     }
@@ -64,9 +73,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
         console.log(error);
         res.status(500).json({
             success: false,
-            message:
-                error.message ||
-                'Something went wrong - can not retrived product',
+            message: 'No product found',
             error: error,
         });
     }
@@ -91,9 +98,7 @@ const updateProduct = async (req: Request, res: Response) => {
         console.log(error);
         res.status(500).json({
             success: false,
-            message:
-                error.message ||
-                'Something went wrong - can not update product',
+            message: 'Something went wrong - can not update product',
             error: error,
         });
     }
@@ -113,9 +118,7 @@ const deleteProduct = async (req: Request, res: Response) => {
         console.log(error);
         res.status(500).json({
             success: false,
-            message:
-                error.message ||
-                'Something went wrong - can not delete product',
+            message: 'Something went wrong - can not delete product',
             error: error,
         });
     }

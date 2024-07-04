@@ -41,6 +41,7 @@ const productSchema = new Schema<IProduct, ProductModel, IProductMethods>(
             type: inventorySchema,
             required: [true, 'Product inventory is required'],
         },
+
         isDeleted: {
             type: Boolean,
             default: false,
