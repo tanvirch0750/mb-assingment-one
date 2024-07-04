@@ -23,11 +23,11 @@ export type IProduct = {
 
 // type for custom instance method
 export type IProductMethods = {
-    anyInstanceMethod(id: string): Promise<string>;
+    anyInstanceMethod(): Promise<string>;
 };
 
 // for both instance and static methods
 export interface ProductModel
     extends Model<IProduct, Record<string, never>, IProductMethods> {
-    anyInstaceMethod(id: string): Promise<string>;
+    anyInstaceMethod(): Promise<string>;
 }

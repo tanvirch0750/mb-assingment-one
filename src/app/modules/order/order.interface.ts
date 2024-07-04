@@ -11,11 +11,11 @@ export type IOrder = {
 
 // type for custom instance method
 export type IOrderMethods = {
-    anyInstanceMethod(id: string): Promise<string>;
+    anyInstanceMethod(): Promise<string>;
 };
 
 // for both instance and static methods
 export interface OrderModel
     extends Model<IOrder, Record<string, never>, IOrderMethods> {
-    anyInstanceMethod(id: string): Promise<string>;
+    anyInstanceMethod(): Promise<string>;
 }

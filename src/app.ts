@@ -23,3 +23,5 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 export default app;
+
+// https://mb-assignment-one.vercel.app/
