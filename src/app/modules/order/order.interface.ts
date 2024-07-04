@@ -9,7 +9,13 @@ export type IOrder = {
     isDeleted: boolean;
 };
 
-export type IOrderMethods = {};
+// type for custom instance method
+export type IOrderMethods = {
+    anyInstanceMethod(id: string): Promise<string>;
+};
 
 // for both instance and static methods
-export interface OrderModel extends Model<IOrder, {}, IOrderMethods> {}
+export interface OrderModel
+    extends Model<IOrder, Record<string, never>, IOrderMethods> {
+    anyInstanceMethod(id: string): Promise<string>;
+}

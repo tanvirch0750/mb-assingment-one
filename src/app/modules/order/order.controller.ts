@@ -16,11 +16,14 @@ const createOrder = async (req: Request, res: Response) => {
             message: 'Order is created successfully',
             data: result,
         });
-    } catch (error: any) {
+    } catch (error) {
         console.log(error);
+        const errorMessage =
+            (error as Error).message || 'Order creation failed';
+
         res.status(500).json({
             success: false,
-            message: error.message || 'Order creation failed',
+            message: errorMessage,
             error: error,
         });
     }
@@ -38,13 +41,15 @@ const getAllOrders = async (req: Request, res: Response) => {
                 : 'Orders fetched successfully!',
             data: result,
         });
-    } catch (error: any) {
+    } catch (error) {
         console.log(error);
+        const errorMessage =
+            (error as Error).message ||
+            'Something went wrong - can not retrived order';
+
         res.status(500).json({
             success: false,
-            message:
-                error.message ||
-                'Something went wrong - can not retrived order',
+            message: errorMessage,
             error: error,
         });
     }

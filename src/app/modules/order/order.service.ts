@@ -34,7 +34,7 @@ const createNewOrderIntoDB = async (orderData: IOrder) => {
 };
 
 const getAllOrdersFromDB = async (email?: string) => {
-    let result: any;
+    let result;
 
     if (email) {
         result = await Order.find({ email });

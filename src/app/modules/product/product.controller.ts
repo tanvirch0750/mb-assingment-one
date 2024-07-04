@@ -16,11 +16,14 @@ const createProduct = async (req: Request, res: Response) => {
             message: 'Product is created successfully',
             data: result,
         });
-    } catch (error: any) {
+    } catch (error) {
         console.log(error);
+        const errorMessage =
+            (error as Error).message || 'Product Creation failed';
+
         res.status(500).json({
             success: false,
-            message: error.message || 'Product Creation failed',
+            message: errorMessage,
             error: error,
         });
     }
@@ -47,13 +50,15 @@ const getAllProducts = async (req: Request, res: Response) => {
                 data: result,
             });
         }
-    } catch (error: any) {
+    } catch (error) {
         console.log(error);
+        const errorMessage =
+            (error as Error).message ||
+            'Something went wrong - can not retrived product';
+
         res.status(500).json({
             success: false,
-            message:
-                error.message ||
-                'Something went wrong - can not retrived product',
+            message: errorMessage,
             error: error,
         });
     }
@@ -69,11 +74,14 @@ const getSingleProduct = async (req: Request, res: Response) => {
             message: 'Product retrived successfully',
             data: result,
         });
-    } catch (error: any) {
+    } catch (error) {
         console.log(error);
+
+        const errorMessage = (error as Error).message || 'No product found';
+
         res.status(500).json({
             success: false,
-            message: 'No product found',
+            message: errorMessage,
             error: error,
         });
     }
@@ -94,11 +102,16 @@ const updateProduct = async (req: Request, res: Response) => {
             message: 'Product updated successfully',
             data: result,
         });
-    } catch (error: any) {
+    } catch (error) {
         console.log(error);
+
+        const errorMessage =
+            (error as Error).message ||
+            'Something went wrong - can not update product';
+
         res.status(500).json({
             success: false,
-            message: 'Something went wrong - can not update product',
+            message: errorMessage,
             error: error,
         });
     }
@@ -108,17 +121,22 @@ const deleteProduct = async (req: Request, res: Response) => {
     const productId = req?.params?.productId;
 
     try {
-        const result = await ProductServices.deleteProductFromDB(productId);
+        await ProductServices.deleteProductFromDB(productId);
         res.status(200).json({
             success: true,
             message: 'Product deleted successfully',
             data: null,
         });
-    } catch (error: any) {
+    } catch (error) {
         console.log(error);
+
+        const errorMessage =
+            (error as Error).message ||
+            'Something went wrong - can not delete product';
+
         res.status(500).json({
             success: false,
-            message: 'Something went wrong - can not delete product',
+            message: errorMessage,
             error: error,
         });
     }

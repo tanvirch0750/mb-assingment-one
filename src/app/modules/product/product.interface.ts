@@ -21,7 +21,13 @@ export type IProduct = {
     isDeleted: boolean;
 };
 
-export type IProductMethods = {};
+// type for custom instance method
+export type IProductMethods = {
+    anyInstanceMethod(id: string): Promise<string>;
+};
 
 // for both instance and static methods
-export interface ProductModel extends Model<IProduct, {}, IProductMethods> {}
+export interface ProductModel
+    extends Model<IProduct, Record<string, never>, IProductMethods> {
+    anyInstaceMethod(id: string): Promise<string>;
+}

@@ -1,4 +1,4 @@
-import express, { Application, NextFunction, Request, Response } from 'express';
+import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { ProductRoutes } from './app/modules/product/product.route';
 import { OrderRoutes } from './app/modules/order/order.route';
@@ -14,7 +14,7 @@ app.use('/api/products', ProductRoutes);
 app.use('/api/orders', OrderRoutes);
 
 // error route
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.status(404).json({ message: 'Route not found' });
 });
 
