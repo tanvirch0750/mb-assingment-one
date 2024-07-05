@@ -3,12 +3,16 @@ import { IProduct } from './product.interface';
 import { ProductServices } from './product.service';
 import productValidationSchema from './product.validation';
 
+// Controller function to create a new product
 const createProduct = async (req: Request, res: Response) => {
     try {
+        // Extract product data from the request body
         const productData: IProduct = req.body as unknown as IProduct;
 
+        // Validate and parse the product data
         const zodParseData = productValidationSchema.parse(productData);
 
+        // Create the product using the service function
         const result = await ProductServices.createProductIntoDB(zodParseData);
 
         res.status(200).json({
@@ -29,6 +33,7 @@ const createProduct = async (req: Request, res: Response) => {
     }
 };
 
+// Controller function to get all products, optionally filtered by a search term
 const getAllProducts = async (req: Request, res: Response) => {
     const searchTerm = req.query.searchTerm as string;
 
@@ -64,6 +69,7 @@ const getAllProducts = async (req: Request, res: Response) => {
     }
 };
 
+// Controller function to get a single product by its ID
 const getSingleProduct = async (req: Request, res: Response) => {
     const productId = req?.params?.productId;
 
@@ -87,6 +93,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
     }
 };
 
+// Controller function to update an existing product by its ID
 const updateProduct = async (req: Request, res: Response) => {
     const productId = req?.params?.productId;
 
@@ -117,6 +124,7 @@ const updateProduct = async (req: Request, res: Response) => {
     }
 };
 
+// Controller function to delete a product by its ID
 const deleteProduct = async (req: Request, res: Response) => {
     const productId = req?.params?.productId;
 

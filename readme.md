@@ -16,6 +16,7 @@
 -   Search products (GET): https://mb-assignment-one.vercel.app/api/products?searchTerm=iphone
 -   Get single product (GET): https://mb-assignment-one.vercel.app/api/products/6685ad29aa07391d4db79667
 -   Update product (PATCH): https://mb-assignment-one.vercel.app/api/products/6685ad29aa07391d4db79667
+-   Delete product (DELETE): https://mb-assignment-one.vercel.app/api/products/6685ad29aa07391d4db79667
 
 #### Orders Routes
 

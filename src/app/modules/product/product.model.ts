@@ -7,11 +7,13 @@ import {
     ProductModel,
 } from './product.interface';
 
+// Define the schema for product variants
 const variantSchema = new Schema<IVariant>({
     type: { type: String, required: [true, 'Variant type is required'] },
     value: { type: String, required: [true, 'Variant value is required'] },
 });
 
+// Define the schema for product inventory
 const inventorySchema = new Schema<IInventory>({
     quantity: {
         type: Number,
@@ -20,6 +22,7 @@ const inventorySchema = new Schema<IInventory>({
     inStock: { type: Boolean, required: [true, 'In-stock status is required'] },
 });
 
+// Define the schema for products, including variants and inventory
 const productSchema = new Schema<IProduct, ProductModel, IProductMethods>(
     {
         name: { type: String, required: [true, 'Product name is required'] },
@@ -54,7 +57,7 @@ const productSchema = new Schema<IProduct, ProductModel, IProductMethods>(
     },
 );
 
-// query middleware - to remove that is isDeleted true
+// Middleware to exclude products that are marked as deleted from query results
 productSchema.pre('find', function (next) {
     this.find({ isDeleted: { $ne: true } });
 
@@ -65,10 +68,11 @@ productSchema.pre('findOne', function (next) {
 
     next();
 });
-// aggregate middleware - to remove that is isDeleted true- if used aggreagate instead of findOne
+// Middleware to exclude products that are marked as deleted from aggregate results
 productSchema.pre('aggregate', function (next) {
     this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
     next();
 });
 
+// Create and export the Product model based on the product schema
 export const Product = model<IProduct, ProductModel>('Product', productSchema);
