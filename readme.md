@@ -1,6 +1,6 @@
 ## Mern Bootcamp Assignment One
 
-### Four Running the project locally
+### For Running the project locally
 
 -   npm install
 -   npm run start:dev
