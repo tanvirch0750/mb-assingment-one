@@ -2,6 +2,7 @@ import { Product } from '../product/product.model';
 import { IOrder } from './order.interface';
 import { Order } from './order.model';
 
+// Function to create a new order in the database
 const createNewOrderIntoDB = async (orderData: IOrder) => {
     // Find the product by productId
     const product = await Product.findById(orderData.productId);
@@ -33,6 +34,7 @@ const createNewOrderIntoDB = async (orderData: IOrder) => {
     return result;
 };
 
+// Function to retrieve all orders from the database, optionally filtered by email
 const getAllOrdersFromDB = async (email?: string) => {
     let result;
 

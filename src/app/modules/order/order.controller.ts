@@ -3,6 +3,7 @@ import { IOrder } from './order.interface';
 import orderValidationSchema from './order.validation';
 import { OrderServices } from './order.service';
 
+// Controller function to create a new order
 const createOrder = async (req: Request, res: Response) => {
     try {
         const orderData: IOrder = req.body as unknown as IOrder;
@@ -29,6 +30,7 @@ const createOrder = async (req: Request, res: Response) => {
     }
 };
 
+// Controller function to get all orders, optionally filtered by email
 const getAllOrders = async (req: Request, res: Response) => {
     const email = req.query.email as string;
 
