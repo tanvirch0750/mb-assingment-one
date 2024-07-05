@@ -1,7 +1,10 @@
 ## Mern Bootcamp Assignment One
 
-### For Running the project locally
+-   Task Description: Develop a Express application with TypeScript as the programming language, integrating MongoDB with Mongoose for effective data management. Ensure data integrity through validation using Joi/Zod.
 
+### For Run the project locally
+
+-   reomove package-lock.json file
 -   npm install
 -   npm run start:dev
 
